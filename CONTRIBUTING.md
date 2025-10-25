@@ -1,6 +1,6 @@
-# Contributing to NanoBrowser
+# Contributing to NexonBrowser
 
-We deeply appreciate your interest in contributing to NanoBrowser! Every contribution helps make Nanobrowser more powerful and accessible for everyone.
+We deeply appreciate your interest in contributing to NexonBrowser! Every contribution helps make NexonBrowser more powerful and accessible for everyone.
 
 ## Quick Start
 
@@ -34,3 +34,4 @@ We deeply appreciate your interest in contributing to NanoBrowser! Every contrib
 ## License
 
 By contributing, you agree that your contributions will be licensed under the project's license terms.
+

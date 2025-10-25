@@ -4,7 +4,7 @@ This file provides guidance to AI coding assistants (e.g., Claude Code, GitHub C
 
 ## Project Overview
 
-Nanobrowser is an open-source AI web automation Chrome extension that runs multi-agent systems locally in the browser. It's a free alternative to OpenAI Operator with support for multiple LLM providers (OpenAI, Anthropic, Gemini, Ollama, etc.).
+Nexonbrowser is an open-source AI web automation Chrome extension that runs multi-agent systems locally in the browser. It's a free alternative to OpenAI Operator with support for multiple LLM providers (OpenAI, Anthropic, Gemini, Ollama, etc.).
 
 ## Development Commands
 
@@ -289,3 +289,4 @@ Use Chrome i18n placeholder format with proper definitions:
    workspace‑scoped lint/format/type-check/build, and small focused patches
  - Reuse existing building blocks: `packages/ui` components and
    `packages/tailwind-config` tokens instead of re-implementing
+

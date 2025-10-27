@@ -185,28 +185,32 @@ export default function ChatInput({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`overflow-hidden rounded-lg border transition-colors ${disabled ? 'cursor-not-allowed' : 'focus-within:border-sky-400 hover:border-sky-400'} ${isDarkMode ? 'border-slate-700' : ''}`}
+      className={`rounded-md border transition-colors ${
+        disabled
+          ? 'cursor-not-allowed'
+          : isDarkMode
+            ? 'border-[#3c3c3c] focus-within:border-[#007acc] hover:border-[#007acc]'
+            : 'border-[#e1e4e8] focus-within:border-[#0366d6] hover:border-[#0366d6]'
+      }`}
       aria-label={t('chat_input_form')}>
       <div className="flex flex-col">
         {/* File attachments display */}
         {attachedFiles.length > 0 && (
           <div
-            className={`flex flex-wrap gap-2 border-b p-2 ${
-              isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-gray-200 bg-gray-50'
-            }`}>
+            className={`flex flex-wrap gap-2 border-b p-2 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-[#f8f8f8]'}`}>
             {attachedFiles.map((file, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-1 rounded-md px-2 py-1 text-xs ${
-                  isDarkMode ? 'bg-slate-700 text-gray-300' : 'bg-gray-200 text-gray-700'
+                className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                  isDarkMode ? 'bg-[#3c3c3c] text-[#cccccc]' : 'bg-[#e1e4e8] text-[#24292e]'
                 }`}>
                 <span className="text-xs">📎</span>
-                <span className="max-w-[150px] truncate">{file.name}</span>
+                <span className="max-w-[120px] truncate">{file.name}</span>
                 <button
                   type="button"
                   onClick={() => handleRemoveFile(index)}
-                  className={`ml-1 rounded-sm transition-colors ${
-                    isDarkMode ? 'hover:bg-slate-600' : 'hover:bg-gray-300'
+                  className={`ml-1 rounded-sm p-0.5 transition-colors ${
+                    isDarkMode ? 'hover:bg-[#1e1e1e]' : 'hover:bg-[#d1d5da]'
                   }`}
                   aria-label={`Remove ${file.name}`}>
                   <span className="text-xs">✕</span>
@@ -223,25 +227,23 @@ export default function ChatInput({
           onKeyDown={handleKeyDown}
           disabled={disabled}
           aria-disabled={disabled}
-          rows={5}
-          className={`w-full resize-none border-none p-2 focus:outline-none ${
+          rows={3}
+          className={`w-full resize-none border-none p-3 text-sm focus:outline-none ${
             disabled
               ? isDarkMode
-                ? 'cursor-not-allowed bg-slate-800 text-gray-400'
-                : 'cursor-not-allowed bg-gray-100 text-gray-500'
+                ? 'cursor-not-allowed bg-[#252526] text-[#969696]'
+                : 'cursor-not-allowed bg-[#f8f8f8] text-[#586069]'
               : isDarkMode
-                ? 'bg-slate-800 text-gray-200'
-                : 'bg-white'
+                ? 'bg-[#1e1e1e] text-[#cccccc] placeholder-[#969696]'
+                : 'bg-white text-[#24292e] placeholder-[#586069]'
           }`}
           placeholder={attachedFiles.length > 0 ? 'Add a message (optional)...' : t('chat_input_placeholder')}
           aria-label={t('chat_input_editor')}
         />
 
         <div
-          className={`flex items-center justify-between px-2 py-1.5 ${
-            disabled ? (isDarkMode ? 'bg-slate-800' : 'bg-gray-100') : isDarkMode ? 'bg-slate-800' : 'bg-white'
-          }`}>
-          <div className="flex gap-2 text-gray-500">
+          className={`flex items-center justify-between px-3 py-2 border-t ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-[#f8f8f8]'}`}>
+          <div className="flex gap-1">
             {/* File attachment button */}
             <button
               type="button"
@@ -249,14 +251,14 @@ export default function ChatInput({
               disabled={disabled}
               aria-label="Attach files"
               title="Attach text files (txt, md, json, csv, etc.)"
-              className={`rounded-md p-1.5 transition-colors ${
+              className={`flex items-center justify-center w-7 h-7 rounded transition-colors ${
                 disabled
                   ? 'cursor-not-allowed opacity-50'
                   : isDarkMode
-                    ? 'text-gray-400 hover:bg-slate-700 hover:text-gray-200'
-                    : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                    ? 'text-[#969696] hover:bg-[#3c3c3c] hover:text-[#cccccc]'
+                    : 'text-[#586069] hover:bg-[#e1e4e8] hover:text-[#24292e]'
               }`}>
-              <span className="text-lg">📎</span>
+              <span className="text-sm">📎</span>
             </button>
 
             {/* Hidden file input */}
@@ -282,19 +284,19 @@ export default function ChatInput({
                       ? t('chat_stt_recording_stop')
                       : t('chat_stt_input_start')
                 }
-                className={`rounded-md p-1.5 transition-colors ${
+                className={`flex items-center justify-center w-7 h-7 rounded transition-colors ${
                   disabled || isProcessingSpeech
                     ? 'cursor-not-allowed opacity-50'
                     : isRecording
-                      ? 'bg-red-500 text-white hover:bg-red-600'
+                      ? 'bg-[#f14c4c] text-white hover:bg-[#d73a49]'
                       : isDarkMode
-                        ? 'text-gray-400 hover:bg-slate-700 hover:text-gray-200'
-                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                        ? 'text-[#969696] hover:bg-[#3c3c3c] hover:text-[#cccccc]'
+                        : 'text-[#586069] hover:bg-[#e1e4e8] hover:text-[#24292e]'
                 }`}>
                 {isProcessingSpeech ? (
-                  <AiOutlineLoading3Quarters className="size-4 animate-spin" />
+                  <AiOutlineLoading3Quarters className="w-4 h-4 animate-spin" />
                 ) : (
-                  <FaMicrophone className={`size-4 ${isRecording ? 'animate-pulse' : ''}`} />
+                  <FaMicrophone className={`w-3 h-3 ${isRecording ? 'animate-pulse' : ''}`} />
                 )}
               </button>
             )}
@@ -304,7 +306,7 @@ export default function ChatInput({
             <button
               type="button"
               onClick={onStopTask}
-              className="rounded-md bg-red-500 px-3 py-1 text-white transition-colors hover:bg-red-600">
+              className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${isDarkMode ? 'bg-[#f14c4c] hover:bg-[#d73a49] text-white' : 'bg-[#f14c4c] hover:bg-[#d73a49] text-white'}`}>
               {t('chat_buttons_stop')}
             </button>
           ) : historicalSessionId ? (
@@ -313,7 +315,13 @@ export default function ChatInput({
               onClick={handleReplay}
               disabled={!historicalSessionId}
               aria-disabled={!historicalSessionId}
-              className={`rounded-md bg-green-500 px-3 py-1 text-white transition-colors hover:enabled:bg-green-600 ${!historicalSessionId ? 'cursor-not-allowed opacity-50' : ''}`}>
+              className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+                !historicalSessionId
+                  ? 'cursor-not-allowed opacity-50'
+                  : isDarkMode
+                    ? 'bg-[#89d185] hover:bg-[#7cc87a] text-[#1e1e1e]'
+                    : 'bg-[#28a745] hover:bg-[#218838] text-white'
+              }`}>
               {t('chat_buttons_replay')}
             </button>
           ) : (
@@ -321,7 +329,13 @@ export default function ChatInput({
               type="submit"
               disabled={isSendButtonDisabled}
               aria-disabled={isSendButtonDisabled}
-              className={`rounded-md bg-[#19C2FF] px-3 py-1 text-white transition-colors hover:enabled:bg-[#0073DC] ${isSendButtonDisabled ? 'cursor-not-allowed opacity-50' : ''}`}>
+              className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+                isSendButtonDisabled
+                  ? 'cursor-not-allowed opacity-50'
+                  : isDarkMode
+                    ? 'bg-[#0e639c] hover:bg-[#1177bb] text-white'
+                    : 'bg-[#0366d6] hover:bg-[#0256cc] text-white'
+              }`}>
               {t('chat_buttons_send')}
             </button>
           )}

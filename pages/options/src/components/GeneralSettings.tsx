@@ -30,18 +30,18 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
   return (
     <section className="space-y-6">
       <div
-        className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-white'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-left text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
+        <h2 className={`mb-6 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
           {t('options_general_header')}
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_maxSteps')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_maxSteps_desc')}
               </p>
             </div>
@@ -55,16 +55,16 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               max={50}
               value={settings.maxSteps}
               onChange={e => updateSetting('maxSteps', Number.parseInt(e.target.value, 10))}
-              className={`w-20 rounded-md border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-gray-300 bg-white text-gray-700'} px-3 py-2`}
+              className={`w-16 rounded border px-2 py-1 text-sm ${isDarkMode ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc] focus:border-[#007acc]' : 'border-[#e1e4e8] bg-white text-[#24292e] focus:border-[#0366d6]'}`}
             />
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_maxActions')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_maxActions_desc')}
               </p>
             </div>
@@ -78,16 +78,16 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               max={50}
               value={settings.maxActionsPerStep}
               onChange={e => updateSetting('maxActionsPerStep', Number.parseInt(e.target.value, 10))}
-              className={`w-20 rounded-md border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-gray-300 bg-white text-gray-700'} px-3 py-2`}
+              className={`w-16 rounded border px-2 py-1 text-sm ${isDarkMode ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc] focus:border-[#007acc]' : 'border-[#e1e4e8] bg-white text-[#24292e] focus:border-[#0366d6]'}`}
             />
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_maxFailures')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_maxFailures_desc')}
               </p>
             </div>
@@ -101,16 +101,16 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               max={10}
               value={settings.maxFailures}
               onChange={e => updateSetting('maxFailures', Number.parseInt(e.target.value, 10))}
-              className={`w-20 rounded-md border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-gray-300 bg-white text-gray-700'} px-3 py-2`}
+              className={`w-16 rounded border px-2 py-1 text-sm ${isDarkMode ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc] focus:border-[#007acc]' : 'border-[#e1e4e8] bg-white text-[#24292e] focus:border-[#0366d6]'}`}
             />
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_enableVision')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_enableVision_desc')}
               </p>
             </div>
@@ -124,18 +124,18 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               />
               <label
                 htmlFor="useVision"
-                className={`peer h-6 w-11 rounded-full ${isDarkMode ? 'bg-slate-600' : 'bg-gray-200'} after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300`}>
+                className={`peer h-5 w-9 rounded-full transition-colors ${isDarkMode ? 'bg-[#3c3c3c]' : 'bg-[#e1e4e8]'} after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-all after:content-[''] ${isDarkMode ? 'peer-checked:bg-[#007acc]' : 'peer-checked:bg-[#0366d6]'} peer-checked:after:translate-x-4 peer-focus:outline-none`}>
                 <span className="sr-only">{t('options_general_enableVision')}</span>
               </label>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_displayHighlights')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_displayHighlights_desc')}
               </p>
             </div>
@@ -149,18 +149,18 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               />
               <label
                 htmlFor="displayHighlights"
-                className={`peer h-6 w-11 rounded-full ${isDarkMode ? 'bg-slate-600' : 'bg-gray-200'} after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300`}>
+                className={`peer h-5 w-9 rounded-full transition-colors ${isDarkMode ? 'bg-[#3c3c3c]' : 'bg-[#e1e4e8]'} after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-all after:content-[''] ${isDarkMode ? 'peer-checked:bg-[#007acc]' : 'peer-checked:bg-[#0366d6]'} peer-checked:after:translate-x-4 peer-focus:outline-none`}>
                 <span className="sr-only">{t('options_general_displayHighlights')}</span>
               </label>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_planningInterval')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_planningInterval_desc')}
               </p>
             </div>
@@ -174,42 +174,40 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               max={20}
               value={settings.planningInterval}
               onChange={e => updateSetting('planningInterval', Number.parseInt(e.target.value, 10))}
-              className={`w-20 rounded-md border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-gray-300 bg-white text-gray-700'} px-3 py-2`}
+              className={`w-16 rounded border px-2 py-1 text-sm ${isDarkMode ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc] focus:border-[#007acc]' : 'border-[#e1e4e8] bg-white text-[#24292e] focus:border-[#0366d6]'}`}
             />
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_minWaitPageLoad')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_minWaitPageLoad_desc')}
               </p>
             </div>
-            <div className="flex items-center space-x-2">
-              <label htmlFor="minWaitPageLoad" className="sr-only">
-                {t('options_general_minWaitPageLoad')}
-              </label>
-              <input
-                id="minWaitPageLoad"
-                type="number"
-                min={250}
-                max={5000}
-                step={50}
-                value={settings.minWaitPageLoad}
-                onChange={e => updateSetting('minWaitPageLoad', Number.parseInt(e.target.value, 10))}
-                className={`w-20 rounded-md border ${isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-gray-300 bg-white text-gray-700'} px-3 py-2`}
-              />
-            </div>
+            <label htmlFor="minWaitPageLoad" className="sr-only">
+              {t('options_general_minWaitPageLoad')}
+            </label>
+            <input
+              id="minWaitPageLoad"
+              type="number"
+              min={250}
+              max={5000}
+              step={50}
+              value={settings.minWaitPageLoad}
+              onChange={e => updateSetting('minWaitPageLoad', Number.parseInt(e.target.value, 10))}
+              className={`w-20 rounded border px-2 py-1 text-sm ${isDarkMode ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc] focus:border-[#007acc]' : 'border-[#e1e4e8] bg-white text-[#24292e] focus:border-[#0366d6]'}`}
+            />
           </div>
 
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <div className="flex-1 mr-4">
+              <h3 className={`text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
                 {t('options_general_replayHistoricalTasks')}
               </h3>
-              <p className={`text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              <p className={`text-xs mt-1 ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
                 {t('options_general_replayHistoricalTasks_desc')}
               </p>
             </div>
@@ -223,7 +221,7 @@ export const GeneralSettings = ({ isDarkMode = false }: GeneralSettingsProps) =>
               />
               <label
                 htmlFor="replayHistoricalTasks"
-                className={`peer h-6 w-11 rounded-full ${isDarkMode ? 'bg-slate-600' : 'bg-gray-200'} after:absolute after:left-[2px] after:top-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300`}>
+                className={`peer h-5 w-9 rounded-full transition-colors ${isDarkMode ? 'bg-[#3c3c3c]' : 'bg-[#e1e4e8]'} after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-all after:content-[''] ${isDarkMode ? 'peer-checked:bg-[#007acc]' : 'peer-checked:bg-[#0366d6]'} peer-checked:after:translate-x-4 peer-focus:outline-none`}>
                 <span className="sr-only">{t('options_general_replayHistoricalTasks')}</span>
               </label>
             </div>

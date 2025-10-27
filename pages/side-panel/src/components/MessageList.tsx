@@ -37,40 +37,36 @@ function MessageBlock({ message, isSameActor, isDarkMode = false }: MessageBlock
   const isProgress = message.content === 'Showing progress...';
 
   return (
-    <div
-      className={`flex max-w-full gap-3 ${
-        !isSameActor
-          ? `mt-4 border-t ${isDarkMode ? 'border-sky-800/50' : 'border-sky-200/50'} pt-4 first:mt-0 first:border-t-0 first:pt-0`
-          : ''
-      }`}>
+    <div className={`flex max-w-full gap-3 ${!isSameActor ? 'mt-6 first:mt-0' : 'mt-1'}`}>
       {!isSameActor && (
         <div
-          className="flex size-8 shrink-0 items-center justify-center rounded-full"
+          className="flex w-6 h-6 shrink-0 items-center justify-center rounded-full"
           style={{ backgroundColor: actor.iconBackground }}>
-          <img src={actor.icon} alt={actor.name} className="size-6" />
+          <img src={actor.icon} alt={actor.name} className="w-4 h-4" />
         </div>
       )}
-      {isSameActor && <div className="w-8" />}
+      {isSameActor && <div className="w-6" />}
 
       <div className="min-w-0 flex-1">
         {!isSameActor && (
-          <div className={`mb-1 text-sm font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>
+          <div className={`mb-1 text-xs font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
             {actor.name}
           </div>
         )}
 
-        <div className="space-y-0.5">
-          <div className={`whitespace-pre-wrap break-words text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+        <div className="space-y-1">
+          <div
+            className={`whitespace-pre-wrap break-words text-sm leading-relaxed ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
             {isProgress ? (
-              <div className={`h-1 overflow-hidden rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
-                <div className="h-full animate-progress bg-blue-500" />
+              <div className={`h-1 overflow-hidden rounded ${isDarkMode ? 'bg-[#3c3c3c]' : 'bg-[#e1e4e8]'}`}>
+                <div className={`h-full animate-progress ${isDarkMode ? 'bg-[#007acc]' : 'bg-[#0366d6]'}`} />
               </div>
             ) : (
               message.content
             )}
           </div>
           {!isProgress && (
-            <div className={`text-right text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-300'}`}>
+            <div className={`text-right text-xs ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
               {formatTimestamp(message.timestamp)}
             </div>
           )}

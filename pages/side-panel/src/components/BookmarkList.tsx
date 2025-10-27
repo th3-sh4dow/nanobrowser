@@ -81,11 +81,12 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
   }, [editingId]);
 
   return (
-    <div className="p-2">
-      <h3 className={`mb-3 text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+    <div className="p-4">
+      <h3
+        className={`mb-4 text-xs font-semibold uppercase tracking-wide ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
         {t('chat_bookmarks_header')}
       </h3>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="space-y-2">
         {bookmarks.map(bookmark => (
           <div
             key={bookmark.id}
@@ -94,99 +95,92 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
             onDragEnd={handleDragEnd}
             onDragOver={handleDragOver}
             onDrop={e => handleDrop(e, bookmark.id)}
-            className={`group relative rounded-lg p-3 ${
-              isDarkMode ? 'bg-slate-800 hover:bg-slate-700' : 'bg-white hover:bg-sky-50'
-            } border ${isDarkMode ? 'border-slate-700' : 'border-sky-100'}`}>
+            className={`group relative rounded-md p-3 transition-colors ${
+              isDarkMode
+                ? 'bg-[#252526] hover:bg-[#2d2d30] border border-[#3c3c3c]'
+                : 'bg-[#f8f8f8] hover:bg-[#f0f0f0] border border-[#e1e4e8]'
+            }`}>
             {editingId === bookmark.id ? (
-              <div className="flex items-center">
+              <div className="flex items-center gap-2">
                 <input
                   ref={inputRef}
                   type="text"
                   value={editTitle}
                   onChange={e => setEditTitle(e.target.value)}
-                  className={`mr-2 grow rounded px-2 py-1 text-sm ${
-                    isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-sky-100 bg-white text-gray-700'
-                  } border`}
+                  className={`flex-1 rounded px-2 py-1 text-sm border ${
+                    isDarkMode
+                      ? 'border-[#3c3c3c] bg-[#1e1e1e] text-[#cccccc]'
+                      : 'border-[#e1e4e8] bg-white text-[#24292e]'
+                  }`}
                 />
                 <button
                   onClick={() => handleSaveEdit(bookmark.id)}
-                  className={`rounded p-1 ${
+                  className={`flex items-center justify-center w-6 h-6 rounded transition-colors ${
                     isDarkMode
-                      ? 'bg-slate-700 text-green-400 hover:bg-slate-600'
-                      : 'bg-white text-green-500 hover:bg-gray-100'
+                      ? 'bg-[#3c3c3c] text-[#89d185] hover:bg-[#1e1e1e]'
+                      : 'bg-[#e1e4e8] text-[#28a745] hover:bg-[#d1d5da]'
                   }`}
                   aria-label={t('chat_bookmarks_saveEdit')}
                   type="button">
-                  <FaCheck size={14} />
+                  <FaCheck size={12} />
                 </button>
                 <button
                   onClick={handleCancelEdit}
-                  className={`ml-1 rounded p-1 ${
+                  className={`flex items-center justify-center w-6 h-6 rounded transition-colors ${
                     isDarkMode
-                      ? 'bg-slate-700 text-red-400 hover:bg-slate-600'
-                      : 'bg-white text-red-500 hover:bg-gray-100'
+                      ? 'bg-[#3c3c3c] text-[#f14c4c] hover:bg-[#1e1e1e]'
+                      : 'bg-[#e1e4e8] text-[#d73a49] hover:bg-[#d1d5da]'
                   }`}
                   aria-label={t('chat_bookmarks_cancelEdit')}
                   type="button">
-                  <FaTimes size={14} />
+                  <FaTimes size={12} />
                 </button>
               </div>
             ) : (
               <>
-                <div className="flex items-center">
+                <button
+                  type="button"
+                  onClick={() => onBookmarkSelect(bookmark.content)}
+                  className="w-full text-left pr-12">
+                  <div className={`text-sm font-medium truncate ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
+                    {bookmark.title}
+                  </div>
+                </button>
+
+                {/* Action buttons */}
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
-                    type="button"
-                    onClick={() => onBookmarkSelect(bookmark.content)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        onBookmarkSelect(bookmark.content);
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleEditClick(bookmark);
+                    }}
+                    className={`flex items-center justify-center w-6 h-6 rounded transition-colors ${
+                      isDarkMode
+                        ? 'bg-[#3c3c3c] text-[#969696] hover:bg-[#1e1e1e] hover:text-[#cccccc]'
+                        : 'bg-[#e1e4e8] text-[#586069] hover:bg-[#d1d5da] hover:text-[#24292e]'
+                    }`}
+                    aria-label={t('chat_bookmarks_edit')}
+                    type="button">
+                    <FaPen size={10} />
+                  </button>
+
+                  <button
+                    onClick={e => {
+                      e.stopPropagation();
+                      if (onBookmarkDelete) {
+                        onBookmarkDelete(bookmark.id);
                       }
                     }}
-                    className="w-full text-left">
-                    <div
-                      className={`truncate pr-10 text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-                      {bookmark.title}
-                    </div>
+                    className={`flex items-center justify-center w-6 h-6 rounded transition-colors ${
+                      isDarkMode
+                        ? 'bg-[#3c3c3c] text-[#969696] hover:bg-[#1e1e1e] hover:text-[#f14c4c]'
+                        : 'bg-[#e1e4e8] text-[#586069] hover:bg-[#d1d5da] hover:text-[#d73a49]'
+                    }`}
+                    aria-label={t('chat_bookmarks_delete')}
+                    type="button">
+                    <FaTrash size={10} />
                   </button>
                 </div>
-              </>
-            )}
-
-            {editingId !== bookmark.id && (
-              <>
-                {/* Edit button - top right */}
-                <button
-                  onClick={e => {
-                    e.stopPropagation();
-                    handleEditClick(bookmark);
-                  }}
-                  className={`absolute right-[28px] top-1/2 z-10 -translate-y-1/2 rounded p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                    isDarkMode
-                      ? 'bg-slate-700 text-sky-400 hover:bg-slate-600'
-                      : 'bg-white text-sky-500 hover:bg-gray-100'
-                  }`}
-                  aria-label={t('chat_bookmarks_edit')}
-                  type="button">
-                  <FaPen size={14} />
-                </button>
-
-                {/* Delete button - bottom right */}
-                <button
-                  onClick={e => {
-                    e.stopPropagation();
-                    if (onBookmarkDelete) {
-                      onBookmarkDelete(bookmark.id);
-                    }
-                  }}
-                  className={`absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                    isDarkMode
-                      ? 'bg-slate-700 text-gray-400 hover:bg-slate-600'
-                      : 'bg-white text-gray-500 hover:bg-gray-100'
-                  }`}
-                  aria-label={t('chat_bookmarks_delete')}
-                  type="button">
-                  <FaTrash size={14} />
-                </button>
               </>
             )}
           </div>

@@ -1000,157 +1000,122 @@ const SidePanel = () => {
   };
 
   return (
-    <div>
-      <div
-        className={`flex h-screen flex-col ${isDarkMode ? 'bg-slate-900' : "bg-[url('/bg.jpg')] bg-cover bg-no-repeat"} overflow-hidden border ${isDarkMode ? 'border-sky-800' : 'border-[rgb(186,230,253)]'} rounded-2xl`}>
-        <header className="header relative">
-          <div className="header-logo">
-            {showHistory ? (
-              <button
-                type="button"
-                onClick={() => handleBackToChat(false)}
-                className={`${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
-                aria-label={t('nav_back_a11y')}>
-                {t('nav_back')}
-              </button>
-            ) : (
-              <img src="/icon-128.png" alt="Extension Logo" className="size-6" />
-            )}
-          </div>
-          <div className="header-icons">
-            {!showHistory && (
-              <>
-                <button
-                  type="button"
-                  onClick={handleNewChat}
-                  onKeyDown={e => e.key === 'Enter' && handleNewChat()}
-                  className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
-                  aria-label={t('nav_newChat_a11y')}
-                  tabIndex={0}>
-                  <PiPlusBold size={20} />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleLoadHistory}
-                  onKeyDown={e => e.key === 'Enter' && handleLoadHistory()}
-                  className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
-                  aria-label={t('nav_loadHistory_a11y')}
-                  tabIndex={0}>
-                  <GrHistory size={20} />
-                </button>
-              </>
-            )}
-
+    <div className={`flex h-screen flex-col ${isDarkMode ? 'bg-[#1e1e1e]' : 'bg-white'} overflow-hidden`}>
+      <header className="header">
+        <div className="header-logo">
+          {showHistory ? (
             <button
               type="button"
-              onClick={() => chrome.runtime.openOptionsPage()}
-              onKeyDown={e => e.key === 'Enter' && chrome.runtime.openOptionsPage()}
-              className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
-              aria-label={t('nav_settings_a11y')}
-              tabIndex={0}>
-              <FiSettings size={20} />
+              onClick={() => handleBackToChat(false)}
+              className="header-icon"
+              aria-label={t('nav_back_a11y')}>
+              ← {t('nav_back')}
             </button>
-          </div>
-        </header>
-        {showHistory ? (
-          <div className="flex-1 overflow-hidden">
-            <ChatHistoryList
-              sessions={chatSessions}
-              onSessionSelect={handleSessionSelect}
-              onSessionDelete={handleSessionDelete}
-              onSessionBookmark={handleSessionBookmark}
-              visible={true}
-              isDarkMode={isDarkMode}
-            />
-          </div>
-        ) : (
-          <>
-            {/* Show loading state while checking model configuration */}
-            {hasConfiguredModels === null && (
-              <div
-                className={`flex flex-1 items-center justify-center p-8 ${isDarkMode ? 'text-sky-300' : 'text-sky-600'}`}>
-                <div className="text-center">
-                  <div className="mx-auto mb-4 size-8 animate-spin rounded-full border-2 border-sky-400 border-t-transparent"></div>
-                  <p>{t('status_checkingConfig')}</p>
+          ) : (
+            <div className="flex items-center gap-2">
+              <img src="/icon-128.png" alt="Extension Logo" className="w-4 h-4" />
+              <span className="font-medium text-sm">AI Assistant</span>
+            </div>
+          )}
+        </div>
+        <div className="header-icons">
+          {!showHistory && (
+            <>
+              <button type="button" onClick={handleNewChat} className="header-icon" aria-label={t('nav_newChat_a11y')}>
+                <PiPlusBold size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={handleLoadHistory}
+                className="header-icon"
+                aria-label={t('nav_loadHistory_a11y')}>
+                <GrHistory size={16} />
+              </button>
+            </>
+          )}
+          <button
+            type="button"
+            onClick={() => chrome.runtime.openOptionsPage()}
+            className="header-icon"
+            aria-label={t('nav_settings_a11y')}>
+            <FiSettings size={16} />
+          </button>
+        </div>
+      </header>
+      {showHistory ? (
+        <div className="flex-1 overflow-hidden">
+          <ChatHistoryList
+            sessions={chatSessions}
+            onSessionSelect={handleSessionSelect}
+            onSessionDelete={handleSessionDelete}
+            onSessionBookmark={handleSessionBookmark}
+            visible={true}
+            isDarkMode={isDarkMode}
+          />
+        </div>
+      ) : (
+        <>
+          {/* Show loading state while checking model configuration */}
+          {hasConfiguredModels === null && (
+            <div
+              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-[#cccccc]' : 'text-[#586069]'}`}>
+              <div className="text-center">
+                <div
+                  className={`mx-auto mb-4 w-6 h-6 animate-spin rounded-full border-2 ${isDarkMode ? 'border-[#007acc] border-t-transparent' : 'border-[#0366d6] border-t-transparent'}`}></div>
+                <p className="text-sm">{t('status_checkingConfig')}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Show setup message when no models are configured */}
+          {hasConfiguredModels === false && (
+            <div
+              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
+              <div className="max-w-sm text-center">
+                <div
+                  className={`mx-auto mb-6 w-12 h-12 rounded-lg ${isDarkMode ? 'bg-[#252526]' : 'bg-[#f8f8f8]'} flex items-center justify-center border ${isDarkMode ? 'border-[#3c3c3c]' : 'border-[#e1e4e8]'}`}>
+                  <img src="/icon-128.png" alt="Extension Logo" className="w-8 h-8" />
+                </div>
+                <h3 className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
+                  {t('welcome_title')}
+                </h3>
+                <p className={`mb-6 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
+                  {t('welcome_instruction')}
+                </p>
+                <button
+                  onClick={() => chrome.runtime.openOptionsPage()}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${isDarkMode ? 'bg-[#0e639c] hover:bg-[#1177bb] text-white' : 'bg-[#0366d6] hover:bg-[#0256cc] text-white'}`}>
+                  {t('welcome_openSettings')}
+                </button>
+                <div className="mt-4">
+                  <a
+                    href="https://github.com/th3-sh4dow/nexon_AI?tab=readme-ov-file#-quick-start"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-xs ${isDarkMode ? 'text-[#007acc] hover:text-[#1177bb]' : 'text-[#0366d6] hover:text-[#0256cc]'} underline`}>
+                    {t('welcome_quickStart')}
+                  </a>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Show setup message when no models are configured */}
-            {hasConfiguredModels === false && (
-              <div
-                className={`flex flex-1 items-center justify-center p-8 ${isDarkMode ? 'text-sky-300' : 'text-sky-600'}`}>
-                <div className="max-w-md text-center">
-                  <img src="/icon-128.png" alt="Nexonbrowser Logo" className="mx-auto mb-4 size-12" />
-                  <h3 className={`mb-2 text-lg font-semibold ${isDarkMode ? 'text-sky-200' : 'text-sky-700'}`}>
-                    {t('welcome_title')}
-                  </h3>
-                  <p className="mb-4">{t('welcome_instruction')}</p>
-                  <button
-                    onClick={() => chrome.runtime.openOptionsPage()}
-                    className={`my-4 rounded-lg px-4 py-2 font-medium transition-colors ${
-                      isDarkMode ? 'bg-sky-600 text-white hover:bg-sky-700' : 'bg-sky-500 text-white hover:bg-sky-600'
-                    }`}>
-                    {t('welcome_openSettings')}
-                  </button>
-                  <div className="mt-4 text-sm opacity-75">
-                    <a
-                      href="https://github.com/th3-sh4dow/nexon_AI?tab=readme-ov-file#-quick-start"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-700 hover:text-sky-600'}`}>
-                      {t('welcome_quickStart')}
-                    </a>
+          {/* Show normal chat interface when models are configured */}
+          {hasConfiguredModels === true && (
+            <>
+              {messages.length === 0 && (
+                <>
+                  <div className="flex-1 overflow-y-auto">
+                    <BookmarkList
+                      bookmarks={favoritePrompts}
+                      onBookmarkSelect={handleBookmarkSelect}
+                      onBookmarkUpdateTitle={handleBookmarkUpdateTitle}
+                      onBookmarkDelete={handleBookmarkDelete}
+                      onBookmarkReorder={handleBookmarkReorder}
+                      isDarkMode={isDarkMode}
+                    />
                   </div>
-                </div>
-              </div>
-            )}
-
-            {/* Show normal chat interface when models are configured */}
-            {hasConfiguredModels === true && (
-              <>
-                {messages.length === 0 && (
-                  <>
-                    <div
-                      className={`border-t ${isDarkMode ? 'border-sky-900' : 'border-sky-100'} mb-2 p-2 shadow-sm backdrop-blur-sm`}>
-                      <ChatInput
-                        onSendMessage={handleSendMessage}
-                        onStopTask={handleStopTask}
-                        onMicClick={handleMicClick}
-                        isRecording={isRecording}
-                        isProcessingSpeech={isProcessingSpeech}
-                        disabled={!inputEnabled || isHistoricalSession}
-                        showStopButton={showStopButton}
-                        setContent={setter => {
-                          setInputTextRef.current = setter;
-                        }}
-                        isDarkMode={isDarkMode}
-                        historicalSessionId={isHistoricalSession && replayEnabled ? currentSessionId : null}
-                        onReplay={handleReplay}
-                      />
-                    </div>
-                    <div className="flex-1 overflow-y-auto">
-                      <BookmarkList
-                        bookmarks={favoritePrompts}
-                        onBookmarkSelect={handleBookmarkSelect}
-                        onBookmarkUpdateTitle={handleBookmarkUpdateTitle}
-                        onBookmarkDelete={handleBookmarkDelete}
-                        onBookmarkReorder={handleBookmarkReorder}
-                        isDarkMode={isDarkMode}
-                      />
-                    </div>
-                  </>
-                )}
-                {messages.length > 0 && (
-                  <div
-                    className={`scrollbar-gutter-stable flex-1 overflow-x-hidden overflow-y-scroll scroll-smooth p-2 ${isDarkMode ? 'bg-slate-900/80' : ''}`}>
-                    <MessageList messages={messages} isDarkMode={isDarkMode} />
-                    <div ref={messagesEndRef} />
-                  </div>
-                )}
-                {messages.length > 0 && (
-                  <div
-                    className={`border-t ${isDarkMode ? 'border-sky-900' : 'border-sky-100'} p-2 shadow-sm backdrop-blur-sm`}>
+                  <div className={`border-t ${isDarkMode ? 'border-[#3c3c3c]' : 'border-[#e1e4e8]'} p-3`}>
                     <ChatInput
                       onSendMessage={handleSendMessage}
                       onStopTask={handleStopTask}
@@ -1167,12 +1132,38 @@ const SidePanel = () => {
                       onReplay={handleReplay}
                     />
                   </div>
-                )}
-              </>
-            )}
-          </>
-        )}
-      </div>
+                </>
+              )}
+              {messages.length > 0 && (
+                <>
+                  <div
+                    className={`scrollbar-gutter-stable flex-1 overflow-x-hidden overflow-y-scroll p-3 ${isDarkMode ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
+                    <MessageList messages={messages} isDarkMode={isDarkMode} />
+                    <div ref={messagesEndRef} />
+                  </div>
+                  <div className={`border-t ${isDarkMode ? 'border-[#3c3c3c]' : 'border-[#e1e4e8]'} p-3`}>
+                    <ChatInput
+                      onSendMessage={handleSendMessage}
+                      onStopTask={handleStopTask}
+                      onMicClick={handleMicClick}
+                      isRecording={isRecording}
+                      isProcessingSpeech={isProcessingSpeech}
+                      disabled={!inputEnabled || isHistoricalSession}
+                      showStopButton={showStopButton}
+                      setContent={setter => {
+                        setInputTextRef.current = setter;
+                      }}
+                      isDarkMode={isDarkMode}
+                      historicalSessionId={isHistoricalSession && replayEnabled ? currentSessionId : null}
+                      onReplay={handleReplay}
+                    />
+                  </div>
+                </>
+              )}
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 };

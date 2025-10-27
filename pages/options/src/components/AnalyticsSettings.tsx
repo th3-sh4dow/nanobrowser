@@ -77,19 +77,19 @@ export const AnalyticsSettings: React.FC<AnalyticsSettingsProps> = ({ isDarkMode
   return (
     <section className="space-y-6">
       <div
-        className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+        className={`rounded-xl border ${isDarkMode ? 'border-purple-700 bg-purple-900/50' : 'border-indigo-200 bg-white/80'} p-6 text-left shadow-lg backdrop-blur-sm`}>
+        <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-purple-100' : 'text-indigo-800'}`}>
           Analytics Settings
         </h2>
 
         <div className="space-y-6">
           {/* Main toggle */}
           <div
-            className={`my-6 rounded-lg border p-4 ${isDarkMode ? 'border-slate-700 bg-slate-700' : 'border-gray-200 bg-gray-100'}`}>
+            className={`my-6 rounded-lg border p-4 ${isDarkMode ? 'border-purple-600 bg-purple-800/50' : 'border-indigo-200 bg-indigo-50'}`}>
             <div className="flex items-center justify-between">
               <label
                 htmlFor="analytics-enabled"
-                className={`text-base font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                className={`text-base font-medium ${isDarkMode ? 'text-purple-200' : 'text-indigo-700'}`}>
                 Help improve Nexonbrowser
               </label>
               <div className="relative inline-block w-12 select-none">
@@ -103,7 +103,13 @@ export const AnalyticsSettings: React.FC<AnalyticsSettingsProps> = ({ isDarkMode
                 <label
                   htmlFor="analytics-enabled"
                   className={`block h-6 cursor-pointer overflow-hidden rounded-full ${
-                    settings.enabled ? 'bg-blue-500' : isDarkMode ? 'bg-gray-600' : 'bg-gray-300'
+                    settings.enabled
+                      ? isDarkMode
+                        ? 'bg-gradient-to-r from-purple-500 to-pink-500'
+                        : 'bg-gradient-to-r from-indigo-500 to-purple-500'
+                      : isDarkMode
+                        ? 'bg-purple-800'
+                        : 'bg-indigo-200'
                   }`}>
                   <span className="sr-only">Toggle analytics</span>
                   <span

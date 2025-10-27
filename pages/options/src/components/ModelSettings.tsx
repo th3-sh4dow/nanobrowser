@@ -712,11 +712,11 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
 
   const renderModelSelect = (agentName: AgentNameEnum) => (
     <div
-      className={`rounded-lg border ${isDarkMode ? 'border-gray-700 bg-slate-800' : 'border-gray-200 bg-gray-50'} p-4`}>
-      <h3 className={`mb-2 text-lg font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+      className={`rounded-md border p-4 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
+      <h3 className={`mb-2 text-base font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
         {agentName.charAt(0).toUpperCase() + agentName.slice(1)}
       </h3>
-      <p className={`mb-4 text-sm font-normal ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+      <p className={`mb-4 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
         {getAgentDescription(agentName)}
       </p>
 
@@ -725,7 +725,7 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
         <div className="flex items-center">
           <label
             htmlFor={`${agentName}-model`}
-            className={`w-24 text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            className={`w-24 text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
             {t('options_models_labels_model')}
           </label>
           <select
@@ -1128,8 +1128,8 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
     <section className="space-y-6">
       {/* LLM Providers Section */}
       <div
-        className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
+        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
           {t('options_models_providers_header')}
         </h2>
         <div className="space-y-6">
@@ -1623,8 +1623,8 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
 
       {/* Updated Agent Models Section */}
       <div
-        className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-left text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
+        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
           {t('options_models_selection_header')}
         </h2>
         <div className="space-y-4">
@@ -1636,11 +1636,11 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
 
       {/* Speech-to-Text Model Selection */}
       <div
-        className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-left text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
+        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
           {t('options_models_speechToText_header')}
         </h2>
-        <p className={`mb-4 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p className={`mb-4 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
           {t('options_models_stt_desc')}
         </p>
 

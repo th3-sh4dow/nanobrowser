@@ -60,32 +60,30 @@ const Options = () => {
   };
 
   return (
-    <div className={`flex min-h-screen ${isDarkMode ? 'bg-[#1e1e1e] text-[#cccccc]' : 'bg-white text-[#24292e]'}`}>
+    <div
+      className={`flex min-h-screen ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 text-white/90' : 'bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 text-slate-800'}`}>
       {/* Vertical Navigation Bar */}
-      <nav
-        className={`w-56 border-r ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-[#f8f8f8]'}`}>
-        <div className="p-4">
-          <div className="flex items-center gap-2 mb-6">
-            <img src="/icon-128.png" alt="Extension Logo" className="w-6 h-6" />
-            <h1 className={`text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-              {t('options_nav_header')}
-            </h1>
+      <nav className="w-64 glass-surface border-r border-white/10 backdrop-blur-md">
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="relative">
+              <img src="/icon-128.png" alt="Extension Logo" className="w-8 h-8 animate-float" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm opacity-30 animate-glow"></div>
+            </div>
+            <h1 className="text-xl font-bold neon-text">{t('options_nav_header')}</h1>
           </div>
-          <ul className="space-y-1">
-            {TABS.map(item => (
+          <ul className="space-y-2">
+            {TABS.map((item, index) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleTabClick(item.id)}
-                  className={`flex w-full items-center gap-3 rounded px-3 py-2 text-sm transition-colors text-left ${
+                  className={`flex w-full items-center gap-4 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 text-left animate-float ${
                     activeTab === item.id
-                      ? isDarkMode
-                        ? 'bg-[#007acc] text-white'
-                        : 'bg-[#0366d6] text-white'
-                      : isDarkMode
-                        ? 'text-[#cccccc] hover:bg-[#3c3c3c]'
-                        : 'text-[#24292e] hover:bg-[#e1e4e8]'
-                  }`}>
-                  <item.icon className="w-4 h-4" />
+                      ? 'glass-button bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg shadow-cyan-500/30 scale-105'
+                      : 'text-white/70 hover:text-white hover:bg-white/10 hover:scale-105'
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}>
+                  <item.icon className="w-5 h-5" />
                   <span>{item.label}</span>
                 </button>
               </li>
@@ -95,8 +93,10 @@ const Options = () => {
       </nav>
 
       {/* Main Content Area */}
-      <main className={`flex-1 p-6 ${isDarkMode ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
-        <div className="max-w-4xl">{renderTabContent()}</div>
+      <main className="flex-1 p-8 bg-transparent">
+        <div className="max-w-5xl animate-float" style={{ animationDelay: '0.2s' }}>
+          {renderTabContent()}
+        </div>
       </main>
     </div>
   );

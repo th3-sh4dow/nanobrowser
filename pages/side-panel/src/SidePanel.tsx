@@ -1000,7 +1000,8 @@ const SidePanel = () => {
   };
 
   return (
-    <div className={`flex h-screen flex-col ${isDarkMode ? 'bg-[#1e1e1e]' : 'bg-white'} overflow-hidden`}>
+    <div
+      className={`flex h-screen flex-col overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900' : 'bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50'}`}>
       <header className="header">
         <div className="header-logo">
           {showHistory ? (
@@ -1012,9 +1013,12 @@ const SidePanel = () => {
               ← {t('nav_back')}
             </button>
           ) : (
-            <div className="flex items-center gap-2">
-              <img src="/icon-128.png" alt="Extension Logo" className="w-4 h-4" />
-              <span className="font-medium text-sm">AI Assistant</span>
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <img src="/icon-128.png" alt="Extension Logo" className="w-5 h-5 animate-float" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm opacity-30 animate-glow"></div>
+              </div>
+              <span className="font-semibold text-sm neon-text">AI Assistant</span>
             </div>
           )}
         </div>
@@ -1058,11 +1062,10 @@ const SidePanel = () => {
           {/* Show loading state while checking model configuration */}
           {hasConfiguredModels === null && (
             <div
-              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-[#cccccc]' : 'text-[#586069]'}`}>
-              <div className="text-center">
-                <div
-                  className={`mx-auto mb-4 w-6 h-6 animate-spin rounded-full border-2 ${isDarkMode ? 'border-[#007acc] border-t-transparent' : 'border-[#0366d6] border-t-transparent'}`}></div>
-                <p className="text-sm">{t('status_checkingConfig')}</p>
+              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-white/90' : 'text-slate-700'}`}>
+              <div className="glass-surface rounded-2xl p-8 text-center animate-float">
+                <div className="mx-auto mb-4 w-8 h-8 animate-spin rounded-full border-2 border-cyan-400 border-t-transparent animate-glow"></div>
+                <p className="text-sm font-medium">{t('status_checkingConfig')}</p>
               </div>
             </div>
           )}
@@ -1070,29 +1073,27 @@ const SidePanel = () => {
           {/* Show setup message when no models are configured */}
           {hasConfiguredModels === false && (
             <div
-              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-              <div className="max-w-sm text-center">
-                <div
-                  className={`mx-auto mb-6 w-12 h-12 rounded-lg ${isDarkMode ? 'bg-[#252526]' : 'bg-[#f8f8f8]'} flex items-center justify-center border ${isDarkMode ? 'border-[#3c3c3c]' : 'border-[#e1e4e8]'}`}>
-                  <img src="/icon-128.png" alt="Extension Logo" className="w-8 h-8" />
+              className={`flex flex-1 items-center justify-center p-6 ${isDarkMode ? 'text-white/90' : 'text-slate-700'}`}>
+              <div className="glass-surface rounded-3xl p-8 text-center max-w-sm animate-float">
+                <div className="relative mx-auto mb-6 w-16 h-16 rounded-2xl glass-surface flex items-center justify-center">
+                  <img src="/icon-128.png" alt="Extension Logo" className="w-10 h-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-2xl blur-lg opacity-20 animate-glow"></div>
                 </div>
-                <h3 className={`mb-3 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-                  {t('welcome_title')}
-                </h3>
-                <p className={`mb-6 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
+                <h3 className={`mb-4 text-xl font-bold neon-text`}>{t('welcome_title')}</h3>
+                <p className={`mb-8 text-sm leading-relaxed ${isDarkMode ? 'text-white/70' : 'text-slate-600'}`}>
                   {t('welcome_instruction')}
                 </p>
                 <button
                   onClick={() => chrome.runtime.openOptionsPage()}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${isDarkMode ? 'bg-[#0e639c] hover:bg-[#1177bb] text-white' : 'bg-[#0366d6] hover:bg-[#0256cc] text-white'}`}>
+                  className="glass-button px-6 py-3 text-sm font-semibold rounded-xl text-white transition-all duration-300 hover:scale-105">
                   {t('welcome_openSettings')}
                 </button>
-                <div className="mt-4">
+                <div className="mt-6">
                   <a
                     href="https://github.com/th3-sh4dow/nexon_AI?tab=readme-ov-file#-quick-start"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-xs ${isDarkMode ? 'text-[#007acc] hover:text-[#1177bb]' : 'text-[#0366d6] hover:text-[#0256cc]'} underline`}>
+                    className="text-xs text-cyan-400 hover:text-cyan-300 underline transition-colors">
                     {t('welcome_quickStart')}
                   </a>
                 </div>
@@ -1136,12 +1137,11 @@ const SidePanel = () => {
               )}
               {messages.length > 0 && (
                 <>
-                  <div
-                    className={`scrollbar-gutter-stable flex-1 overflow-x-hidden overflow-y-scroll p-3 ${isDarkMode ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
+                  <div className="scrollbar-gutter-stable flex-1 overflow-x-hidden overflow-y-scroll p-4 bg-transparent">
                     <MessageList messages={messages} isDarkMode={isDarkMode} />
                     <div ref={messagesEndRef} />
                   </div>
-                  <div className={`border-t ${isDarkMode ? 'border-[#3c3c3c]' : 'border-[#e1e4e8]'} p-3`}>
+                  <div className="glass-surface border-t border-white/10 p-4 backdrop-blur-md">
                     <ChatInput
                       onSendMessage={handleSendMessage}
                       onStopTask={handleStopTask}

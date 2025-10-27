@@ -45,15 +45,12 @@ export const AnalyticsSettings: React.FC<AnalyticsSettingsProps> = ({ isDarkMode
 
   if (loading) {
     return (
-      <section className="space-y-6">
-        <div
-          className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-          <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-            Analytics Settings
-          </h2>
+      <section className="space-y-8">
+        <div className="glass-surface rounded-3xl p-8 animate-float">
+          <h2 className="mb-8 text-2xl font-bold neon-text">Analytics Settings</h2>
           <div className="animate-pulse">
-            <div className={`mb-2 h-4 w-3/4 rounded ${isDarkMode ? 'bg-slate-600' : 'bg-gray-200'}`}></div>
-            <div className={`h-4 w-1/2 rounded ${isDarkMode ? 'bg-slate-600' : 'bg-gray-200'}`}></div>
+            <div className="mb-4 h-4 w-3/4 rounded-lg glass-surface"></div>
+            <div className="h-4 w-1/2 rounded-lg glass-surface"></div>
           </div>
         </div>
       </section>
@@ -62,88 +59,67 @@ export const AnalyticsSettings: React.FC<AnalyticsSettingsProps> = ({ isDarkMode
 
   if (!settings) {
     return (
-      <section className="space-y-6">
-        <div
-          className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-          <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-            Analytics Settings
-          </h2>
-          <p className={`${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>Failed to load analytics settings.</p>
+      <section className="space-y-8">
+        <div className="glass-surface rounded-3xl p-8 animate-float">
+          <h2 className="mb-8 text-2xl font-bold neon-text">Analytics Settings</h2>
+          <p className="text-red-400 font-medium">Failed to load analytics settings.</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="space-y-6">
-      <div
-        className={`rounded-xl border ${isDarkMode ? 'border-purple-700 bg-purple-900/50' : 'border-indigo-200 bg-white/80'} p-6 text-left shadow-lg backdrop-blur-sm`}>
-        <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-purple-100' : 'text-indigo-800'}`}>
-          Analytics Settings
-        </h2>
+    <section className="space-y-8">
+      <div className="glass-surface rounded-3xl p-8 animate-float">
+        <h2 className="mb-8 text-2xl font-bold neon-text">Analytics Settings</h2>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Main toggle */}
-          <div
-            className={`my-6 rounded-lg border p-4 ${isDarkMode ? 'border-purple-600 bg-purple-800/50' : 'border-indigo-200 bg-indigo-50'}`}>
+          <div className="glass-surface rounded-2xl p-6 animate-float" style={{ animationDelay: '0.1s' }}>
             <div className="flex items-center justify-between">
-              <label
-                htmlFor="analytics-enabled"
-                className={`text-base font-medium ${isDarkMode ? 'text-purple-200' : 'text-indigo-700'}`}>
-                Help improve Nexonbrowser
-              </label>
-              <div className="relative inline-block w-12 select-none">
+              <div className="flex-1 mr-6">
+                <label
+                  htmlFor="analytics-enabled"
+                  className={`text-base font-semibold ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>
+                  Help improve Nexonbrowser
+                </label>
+                <p className={`mt-2 text-sm ${isDarkMode ? 'text-white/60' : 'text-slate-600'}`}>
+                  Share anonymous usage data to help us improve the extension
+                </p>
+              </div>
+              <div className="relative inline-flex cursor-pointer items-center">
                 <input
                   type="checkbox"
                   checked={settings.enabled}
                   onChange={e => handleToggleAnalytics(e.target.checked)}
-                  className="sr-only"
+                  className="peer sr-only"
                   id="analytics-enabled"
                 />
                 <label
                   htmlFor="analytics-enabled"
-                  className={`block h-6 cursor-pointer overflow-hidden rounded-full ${
-                    settings.enabled
-                      ? isDarkMode
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500'
-                        : 'bg-gradient-to-r from-indigo-500 to-purple-500'
-                      : isDarkMode
-                        ? 'bg-purple-800'
-                        : 'bg-indigo-200'
-                  }`}>
+                  className="peer h-6 w-11 rounded-full glass-surface transition-all duration-300 after:absolute after:left-[3px] after:top-[3px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] after:shadow-lg peer-checked:bg-gradient-to-r peer-checked:from-cyan-500 peer-checked:to-blue-500 peer-checked:shadow-lg peer-checked:shadow-cyan-500/30 peer-checked:after:translate-x-5 peer-focus:outline-none hover:scale-105">
                   <span className="sr-only">Toggle analytics</span>
-                  <span
-                    className={`block size-6 rounded-full bg-white shadow transition-transform ${
-                      settings.enabled ? 'translate-x-6' : 'translate-x-0'
-                    }`}
-                  />
                 </label>
               </div>
             </div>
-            <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Share anonymous usage data to help us improve the extension
-            </p>
           </div>
 
           {/* Information about what we collect */}
-          <div
-            className={`rounded-md border p-4 ${isDarkMode ? 'border-slate-600 bg-slate-700' : 'border-gray-200 bg-gray-100'}`}>
-            <h3 className={`text-base font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'} mb-4`}>
+          <div className="glass-surface rounded-2xl p-6 animate-float" style={{ animationDelay: '0.2s' }}>
+            <h3 className={`text-lg font-bold mb-4 ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>
               What we collect:
             </h3>
-            <ul
-              className={`list-disc space-y-2 pl-5 text-left text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <ul className={`list-disc space-y-2 pl-5 text-sm ${isDarkMode ? 'text-white/70' : 'text-slate-600'}`}>
               <li>Task execution metrics (start, completion, failure counts and duration)</li>
               <li>Domain names of websites visited (e.g., &quot;amazon.com&quot;, not full URLs)</li>
               <li>Error categories for failed tasks (no sensitive details)</li>
               <li>Anonymous usage statistics</li>
             </ul>
 
-            <h3 className={`mb-4 mt-6 text-base font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+            <h3 className={`mb-4 mt-8 text-lg font-bold ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>
               What we DON&apos;T collect:
             </h3>
-            <ul
-              className={`list-disc space-y-2 pl-5 text-left text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <ul className={`list-disc space-y-2 pl-5 text-sm ${isDarkMode ? 'text-white/70' : 'text-slate-600'}`}>
               <li>Personal information or login credentials</li>
               <li>Full URLs or page content</li>
               <li>Task instructions or user prompts</li>
@@ -155,8 +131,9 @@ export const AnalyticsSettings: React.FC<AnalyticsSettingsProps> = ({ isDarkMode
           {/* Opt-out message */}
           {!settings.enabled && (
             <div
-              className={`rounded-md border p-4 ${isDarkMode ? 'border-yellow-700 bg-yellow-900/20' : 'border-yellow-200 bg-yellow-50'}`}>
-              <p className={`text-sm ${isDarkMode ? 'text-yellow-300' : 'text-yellow-700'}`}>
+              className="glass-surface rounded-2xl p-4 border border-yellow-400/30 animate-float"
+              style={{ animationDelay: '0.3s' }}>
+              <p className="text-sm text-yellow-400 font-medium">
                 Analytics disabled. You can re-enable it anytime to help improve Nexonbrowser.
               </p>
             </div>

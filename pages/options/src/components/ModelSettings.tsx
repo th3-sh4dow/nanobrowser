@@ -711,12 +711,11 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
   };
 
   const renderModelSelect = (agentName: AgentNameEnum) => (
-    <div
-      className={`rounded-md border p-4 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
-      <h3 className={`mb-2 text-base font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
+    <div className="glass-surface rounded-2xl p-6 animate-float">
+      <h3 className={`mb-3 text-lg font-bold ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>
         {agentName.charAt(0).toUpperCase() + agentName.slice(1)}
       </h3>
-      <p className={`mb-4 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
+      <p className={`mb-6 text-sm ${isDarkMode ? 'text-white/70' : 'text-slate-600'}`}>
         {getAgentDescription(agentName)}
       </p>
 
@@ -725,7 +724,7 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
         <div className="flex items-center">
           <label
             htmlFor={`${agentName}-model`}
-            className={`w-24 text-sm font-medium ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
+            className={`w-24 text-sm font-semibold ${isDarkMode ? 'text-white/90' : 'text-slate-800'}`}>
             {t('options_models_labels_model')}
           </label>
           <select
@@ -1127,11 +1126,8 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
   return (
     <section className="space-y-6">
       {/* LLM Providers Section */}
-      <div
-        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
-        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-          {t('options_models_providers_header')}
-        </h2>
+      <div className="glass-surface rounded-3xl p-8 animate-float">
+        <h2 className="mb-8 text-2xl font-bold neon-text">{t('options_models_providers_header')}</h2>
         <div className="space-y-6">
           {getSortedProviders().length === 0 ? (
             <div className="py-8 text-center text-gray-500">
@@ -1622,11 +1618,8 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
       </div>
 
       {/* Updated Agent Models Section */}
-      <div
-        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
-        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-          {t('options_models_selection_header')}
-        </h2>
+      <div className="glass-surface rounded-3xl p-8 animate-float" style={{ animationDelay: '0.1s' }}>
+        <h2 className="mb-8 text-2xl font-bold neon-text">{t('options_models_selection_header')}</h2>
         <div className="space-y-4">
           {[AgentNameEnum.Planner, AgentNameEnum.Navigator].map(agentName => (
             <div key={agentName}>{renderModelSelect(agentName)}</div>
@@ -1635,12 +1628,9 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
       </div>
 
       {/* Speech-to-Text Model Selection */}
-      <div
-        className={`rounded-md border p-6 ${isDarkMode ? 'border-[#3c3c3c] bg-[#252526]' : 'border-[#e1e4e8] bg-white'}`}>
-        <h2 className={`mb-4 text-lg font-semibold ${isDarkMode ? 'text-[#cccccc]' : 'text-[#24292e]'}`}>
-          {t('options_models_speechToText_header')}
-        </h2>
-        <p className={`mb-4 text-sm ${isDarkMode ? 'text-[#969696]' : 'text-[#586069]'}`}>
+      <div className="glass-surface rounded-3xl p-8 animate-float" style={{ animationDelay: '0.2s' }}>
+        <h2 className="mb-8 text-2xl font-bold neon-text">{t('options_models_speechToText_header')}</h2>
+        <p className={`mb-6 text-sm ${isDarkMode ? 'text-white/70' : 'text-slate-600'}`}>
           {t('options_models_stt_desc')}
         </p>
 

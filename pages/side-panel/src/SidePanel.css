@@ -1,30 +1,34 @@
-/* Modern VS Code/Raycast inspired design */
+/* Glassmorphism + Minimal Hybrid Design */
 :root {
-  --vscode-bg: #1e1e1e;
-  --vscode-sidebar: #252526;
-  --vscode-border: #3c3c3c;
-  --vscode-text: #cccccc;
-  --vscode-text-muted: #969696;
-  --vscode-accent: #007acc;
-  --vscode-accent-hover: #1177bb;
-  --vscode-input-bg: #3c3c3c;
-  --vscode-button-bg: #0e639c;
-  --vscode-button-hover: #1177bb;
-  --vscode-danger: #f14c4c;
-  --vscode-success: #89d185;
-  --vscode-warning: #ffcc02;
-  
-  /* Light theme fallbacks */
-  --light-bg: #ffffff;
-  --light-sidebar: #f8f8f8;
-  --light-border: #e1e4e8;
-  --light-text: #24292e;
-  --light-text-muted: #586069;
-  --light-accent: #0366d6;
-  --light-accent-hover: #0256cc;
-  --light-input-bg: #fafbfc;
-  --light-button-bg: #0366d6;
-  --light-button-hover: #0256cc;
+  /* Dark theme - primary */
+  --glass-bg-dark: rgba(15, 15, 23, 0.85);
+  --glass-surface-dark: rgba(25, 25, 35, 0.7);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-text-dark: rgba(255, 255, 255, 0.9);
+  --glass-text-muted-dark: rgba(255, 255, 255, 0.6);
+
+  /* Neon accents */
+  --neon-blue: #00d4ff;
+  --neon-cyan: #00ffff;
+  --neon-purple: #8b5cf6;
+  --neon-pink: #f472b6;
+
+  /* Primary accent (cyan-blue gradient) */
+  --accent-primary: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+  --accent-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  --accent-glow-hover: 0 0 30px rgba(0, 212, 255, 0.5);
+
+  /* Light theme */
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-surface-light: rgba(248, 250, 252, 0.8);
+  --glass-border-light: rgba(0, 0, 0, 0.1);
+  --glass-text-light: rgba(15, 23, 42, 0.9);
+  --glass-text-muted-light: rgba(15, 23, 42, 0.6);
+
+  /* Blur values */
+  --blur-sm: blur(8px);
+  --blur-md: blur(12px);
+  --blur-lg: blur(16px);
 }
 
 /* Global styles */
@@ -35,17 +39,23 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    #0a0a0f;
 }
 
-/* Scrollbar styles - VS Code inspired */
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Glassmorphism scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-corner {
@@ -57,43 +67,45 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(121, 121, 121, 0.4);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  backdrop-filter: var(--blur-sm);
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 100, 100, 0.7);
-  background-clip: content-box;
+  background: rgba(0, 212, 255, 0.4);
+  box-shadow: var(--accent-glow);
 }
 
-/* Dark mode scrollbar */
-@media (prefers-color-scheme: dark) {
+/* Light mode scrollbar */
+@media (prefers-color-scheme: light) {
   ::-webkit-scrollbar-thumb {
-    background: rgba(121, 121, 121, 0.4);
+    background: rgba(0, 0, 0, 0.2);
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 100, 100, 0.7);
+    background: rgba(0, 212, 255, 0.6);
   }
 }
 
-/* Header styles */
+/* Glassmorphism header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--light-sidebar);
-  border-bottom: 1px solid var(--light-border);
-  min-height: 35px;
+  padding: 12px 16px;
+  background: var(--glass-surface-light);
+  backdrop-filter: var(--blur-md);
+  border-bottom: 1px solid var(--glass-border-light);
+  min-height: 48px;
+  transition: all 0.3s ease;
 }
 
 @media (prefers-color-scheme: dark) {
   .header {
-    background: var(--vscode-sidebar);
-    border-bottom: 1px solid var(--vscode-border);
+    background: var(--glass-surface-dark);
+    border-bottom: 1px solid var(--glass-border-dark);
   }
 }
 
@@ -101,19 +113,20 @@ body {
   display: flex;
   align-items: center;
   font-weight: 600;
-  font-size: 13px;
-  color: var(--light-text);
+  font-size: 14px;
+  color: var(--glass-text-light);
+  transition: all 0.3s ease;
 }
 
 @media (prefers-color-scheme: dark) {
   .header-logo {
-    color: var(--vscode-text);
+    color: var(--glass-text-dark);
   }
 }
 
 .header-icons {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
 }
 
@@ -121,56 +134,101 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  color: var(--light-text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--glass-text-muted-light);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
 }
 
 .header-icon:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--light-text);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--accent-glow);
+}
+
+.header-icon:hover::before {
+  opacity: 1;
+}
+
+.header-icon>* {
+  position: relative;
+  z-index: 1;
 }
 
 @media (prefers-color-scheme: dark) {
   .header-icon {
-    color: var(--vscode-text-muted);
-  }
-  
-  .header-icon:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--vscode-text);
+    color: var(--glass-text-muted-dark);
   }
 }
 
-/* Code blocks */
+/* Glassmorphism code blocks */
 code {
-  background: rgba(175, 184, 193, 0.2);
-  border-radius: 3px;
-  padding: 2px 4px;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--blur-sm);
+  border-radius: 6px;
+  padding: 3px 6px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
   font-size: 12px;
-  color: var(--light-text);
+  color: var(--glass-text-light);
+  border: 1px solid var(--glass-border-light);
 }
 
 @media (prefers-color-scheme: dark) {
   code {
-    background: rgba(110, 118, 129, 0.4);
-    color: var(--vscode-text);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--glass-text-dark);
+    border: 1px solid var(--glass-border-dark);
   }
 }
 
-/* Animation for progress */
+/* Glassmorphism animations */
 @keyframes progress {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: var(--accent-glow);
+  }
+
+  50% {
+    box-shadow: var(--accent-glow-hover);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-2px);
   }
 }
 
@@ -178,23 +236,72 @@ code {
   animation: progress 1.5s ease-in-out infinite;
 }
 
-/* Utility classes */
+.animate-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glassmorphism utility classes */
+.glass-surface {
+  background: var(--glass-surface-light);
+  backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-surface {
+    background: var(--glass-surface-dark);
+    border: 1px solid var(--glass-border-dark);
+  }
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: var(--blur-sm);
+  border: 1px solid var(--glass-border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button:hover {
+  background: var(--accent-primary);
+  box-shadow: var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border-dark);
+  }
+}
+
 .scrollbar-gutter-stable {
   scrollbar-gutter: stable;
 }
 
-/* Focus styles */
+/* Form elements base styling */
+button,
+input,
+optgroup,
+select,
+textarea {
+  background-color: #77770f00;
+  border: 1px solid;
+}
+
+/* Glassmorphism focus styles */
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--light-accent);
-  outline-offset: -2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--neon-cyan);
 }
 
-@media (prefers-color-scheme: dark) {
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible {
-    outline-color: var(--vscode-accent);
-  }
+/* Neon text effect */
+.neon-text {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }

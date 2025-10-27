@@ -1,4 +1,6 @@
-/* VS Code/Raycast inspired options page styles */
+/* Glassmorphism + Minimal Hybrid Options Page */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -6,11 +8,14 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-size: 13px;
-  line-height: 1.4;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+              #0a0a0f;
 }
 
 #app-container {
@@ -58,6 +63,12 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 100, 100, 0.7);
   background-clip: content-box;
+}
+
+/* Form elements base styling */
+button, input, optgroup, select, textarea {
+  background-color: #77770f00;
+  border: 1px solid;
 }
 
 /* Focus styles */
